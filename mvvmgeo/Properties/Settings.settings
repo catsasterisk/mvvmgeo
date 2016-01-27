@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GeoEdit.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CustomProductID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Part #</Value>
+    </Setting>
+    <Setting Name="CustomDrawingNote" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Next Op</Value>
+    </Setting>
+    <Setting Name="CustomCustomerNum" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Weld Station</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
