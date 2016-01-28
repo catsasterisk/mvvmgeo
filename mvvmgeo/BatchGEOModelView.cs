@@ -236,6 +236,7 @@ namespace mvvmgeo
                     }
                 }
             }
+            AppStatus.Instance.StatusBarMessage("Batch process completed.");
         }
 
         private void ClearFile()

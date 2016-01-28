@@ -75,6 +75,7 @@
     <Compile Include="CSVEntry.cs" />
     <Compile Include="GEO.cs" />
     <Compile Include="GEOModelView.cs" />
+    <Compile Include="Helper\AppStatus.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
     <Compile Include="ReplaceGEOModelView.cs" />
     <Compile Include="Settings.cs" />

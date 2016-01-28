@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mvvmgeo"
         mc:Ignorable="d"
-        Title="GEO Property Editor" Height="350" Width="525" ResizeMode="CanMinimize">
+        Title="GEO Property Editor" Height="400" Width="525" ResizeMode="CanMinimize">
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10, 10, 10, 30">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10, 10, 10, 35">
             <TabItem Header="Editor">
                 <Grid x:Name="Grid_Editor" Background="WhiteSmoke">
                     <StackPanel Orientation="Vertical">
@@ -33,8 +33,35 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Batch" IsEnabled="False">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Batch" IsEnabled="True">
+                <Grid Background="#FFE5E5E5" Name="Grid_Batch">
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel LastChildFill="True" Margin="10" Height="25">
+                            <TextBox Width="375" VerticalContentAlignment="Center" DockPanel.Dock="Left" Margin="0, 0, 10, 0" IsReadOnly="True" Text="{Binding FolderPath}" />
+                            <Button Content="Folder" Command="{Binding LoadFolderCommand}" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Margin="10,0,10,10" Height="25">
+                            <TextBox Width="375" VerticalContentAlignment="Center" DockPanel.Dock="Left" Margin="0, 0, 10, 0" IsReadOnly="True" Text="{Binding CSVFileName}" />
+                            <Button Content="CSV File" Command="{Binding LoadCSVCommand}" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Margin="10,0,10,10" Height="160">
+                            <ListView x:Name="listView" ItemsSource="{Binding GEOFiles}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Filename" Width="100" DisplayMemberBinding="{Binding ShortFileName}" />
+                                        <GridViewColumn Header="Product ID" Width="100" DisplayMemberBinding="{Binding ProductID}" />
+                                        <GridViewColumn Header="Drawing Note" Width="100" DisplayMemberBinding="{Binding DrawingNote}" />
+                                        <GridViewColumn Header="Customer #" Width="75" DisplayMemberBinding="{Binding CustomerNum}" />
+                                        <GridViewColumn Header="Done" Width="50" DisplayMemberBinding="{Binding BatchDone}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Margin="10,0,10,10" Height="25">
+                            <Button Content="Start Batch Edit" DockPanel.Dock="Right" Command="{Binding StartBatchProcessCommand}" />
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
             </TabItem>
             <TabItem Header="Replace" IsEnabled="False">
                 <Grid Background="#FFE5E5E5"/>
@@ -43,16 +70,14 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-        <DockPanel Height="25" VerticalAlignment="Bottom">
-            <StatusBar DockPanel.Dock="Bottom">
-                <StatusBarItem>
-                    <TextBlock Text="v0.1.26" />
-                </StatusBarItem>
-                <Separator />
-                <StatusBarItem>
-                    <TextBlock Text="Test" />
-                </StatusBarItem>
-            </StatusBar>
-        </DockPanel>
+        <StatusBar x:Name="StatusBar" Height="30" VerticalAlignment="Bottom" HorizontalContentAlignment="Left">
+            <StatusBarItem HorizontalContentAlignment="Center" Width="75">
+                <TextBlock Text="{Binding AppVersion}" />
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <TextBlock Text="{Binding NewestMessage}" />
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

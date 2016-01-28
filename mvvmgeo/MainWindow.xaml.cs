@@ -11,10 +11,11 @@ namespace mvvmgeo
             // Set up single file editor
             GEOModelView gmv = new GEOModelView();
             Grid_Editor.DataContext = gmv;
+            StatusBar.DataContext = AppStatus.Instance;
 
             // set up batch file editor
             BatchGEOModelView bmv = new BatchGEOModelView();
-            //Grid_BatchFile.DataContext = bmv;
+            Grid_Batch.DataContext = bmv;
 
             ReplaceGEOModelView rmv = new ReplaceGEOModelView();
             //Grid_Replace.DataContext = rmv;
