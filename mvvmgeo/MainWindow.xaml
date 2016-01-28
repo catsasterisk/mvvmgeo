@@ -34,7 +34,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Batch" IsEnabled="True">
-                <Grid Background="#FFE5E5E5" Name="Grid_Batch">
+                <Grid Background="WhiteSmoke" Name="Grid_Batch">
                     <StackPanel Orientation="Vertical">
                         <DockPanel LastChildFill="True" Margin="10" Height="25">
                             <TextBox Width="375" VerticalContentAlignment="Center" DockPanel.Dock="Left" Margin="0, 0, 10, 0" IsReadOnly="True" Text="{Binding FolderPath}" />

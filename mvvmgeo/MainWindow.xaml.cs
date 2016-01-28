@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace mvvmgeo
 {
@@ -8,20 +9,20 @@ namespace mvvmgeo
         {
             InitializeComponent();
 
+            // Bind appstatus class to the main status bar
+            StatusBar.DataContext = AppStatus.Instance;
+
             // Set up single file editor
             GEOModelView gmv = new GEOModelView();
             Grid_Editor.DataContext = gmv;
-            StatusBar.DataContext = AppStatus.Instance;
 
             // set up batch file editor
             BatchGEOModelView bmv = new BatchGEOModelView();
             Grid_Batch.DataContext = bmv;
 
-            ReplaceGEOModelView rmv = new ReplaceGEOModelView();
-            //Grid_Replace.DataContext = rmv;
-
-            Settings s = new Settings();
-            //Grid_Settings.DataContext = s;
+            // check to see if app opens with geo file command line args
+            if (Environment.GetCommandLineArgs().Length > 1)
+                gmv.LoadFile(Environment.GetCommandLineArgs()[1]);
         }
     }
 }

@@ -117,7 +117,7 @@ namespace mvvmgeo
                         g.FileContents = File.ReadAllLines(fd.FileName);
                         CurrentFile = g;
                         GetValues();
-                        AppStatus.Instance.StatusBarMessage("File Loaded successfully.");
+                        AppStatus.Instance.Message("File loaded successfully");
                     }
                 }
             }
@@ -195,7 +195,7 @@ namespace mvvmgeo
                     newFile.Append(line + "\r\n");
                 }
                 File.WriteAllText(CurrentFile.FileName, newFile.ToString());
-                AppStatus.Instance.StatusBarMessage("File saved successfully.");
+                AppStatus.Instance.Message("File saved successfully");
             }
         }
 

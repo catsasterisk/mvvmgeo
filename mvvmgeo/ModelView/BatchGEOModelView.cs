@@ -177,6 +177,7 @@ namespace mvvmgeo
                     GMV.LoadFile(f);
                     GEOFiles.Add(GMV.CurrentFile);
                 }
+                AppStatus.Instance.Message("Loaded " + GEOFiles.Count + " files");
             }
             else
             {
@@ -196,6 +197,7 @@ namespace mvvmgeo
                 CSVFileName = fd.FileName;
                 CSVFileContents = File.ReadAllLines(fd.FileName);
                 ProcessCSV();
+                AppStatus.Instance.Message("CSV file loaded and processed");
             }
         }
 
@@ -220,23 +222,26 @@ namespace mvvmgeo
 
         private void StartBatchProcess()
         {
-            foreach(CSVEntry c in CSVEntries)
+            if (CSVFileName != null)
             {
-                foreach(GEO g in GEOFiles)
+                foreach (CSVEntry c in CSVEntries)
                 {
-                    if(g.FileName.Contains(c.FileName))
+                    foreach (GEO g in GEOFiles)
                     {
-                        // found a match
-                        GMV.CurrentFile = g;
-                        g.ProductID = c.FileName;
-                        g.DrawingNote = c.DrawingNote;
-                        g.CustomerNum = c.CustomerNum;
-                        g.BatchDone = true;
-                        GMV.SaveFile();
+                        if (g.FileName.Contains(c.FileName))
+                        {
+                            // found a match
+                            GMV.CurrentFile = g;
+                            g.ProductID = c.FileName;
+                            g.DrawingNote = c.DrawingNote;
+                            g.CustomerNum = c.CustomerNum;
+                            g.BatchDone = true;
+                            GMV.SaveFile();
+                        }
                     }
                 }
+                AppStatus.Instance.Message("Batch process completed.");
             }
-            AppStatus.Instance.StatusBarMessage("Batch process completed.");
         }
 
         private void ClearFile()
