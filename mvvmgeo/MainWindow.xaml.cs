@@ -19,10 +19,6 @@ namespace mvvmgeo
             // set up batch file editor
             BatchGEOModelView bmv = new BatchGEOModelView();
             Grid_Batch.DataContext = bmv;
-
-            // check to see if app opens with geo file command line args
-            if (Environment.GetCommandLineArgs().Length > 1)
-                gmv.LoadFile(Environment.GetCommandLineArgs()[1]);
         }
     }
 }

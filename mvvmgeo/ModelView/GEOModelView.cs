@@ -3,6 +3,7 @@ using System.Text;
 using System.Windows.Input;
 using System.IO;
 using Microsoft.Win32;
+using System.Threading.Tasks;
 
 namespace mvvmgeo
 {
@@ -45,7 +46,7 @@ namespace mvvmgeo
                 if (_loadFileCommand == null)
                 {
                     _loadFileCommand = new RelayCommand(
-                        param => LoadFile());
+                        async param => await LoadFile());
                 }
                 return _loadFileCommand;
             }
@@ -92,7 +93,7 @@ namespace mvvmgeo
         #endregion
 
         #region Methods / Helpers
-        public void LoadFile(string f = "")
+        public async Task LoadFile(string f = "")
         {
             // check if file is already loaded
             if(CurrentFile != null)
@@ -114,7 +115,7 @@ namespace mvvmgeo
                         // wrap in geo checking
                         GEO g = new GEO();
                         g.FileName = fd.FileName;
-                        g.FileContents = File.ReadAllLines(fd.FileName);
+                        g.FileContents = await FileEx.ReadAllLinesAsync(g.FileName);
                         CurrentFile = g;
                         GetValues();
                         AppStatus.Instance.Message("File loaded successfully");

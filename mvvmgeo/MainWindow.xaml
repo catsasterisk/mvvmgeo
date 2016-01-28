@@ -15,18 +15,18 @@
                             <TextBox Width="375" VerticalContentAlignment="Center" DockPanel.Dock="Left" Margin="0, 0, 10, 0" IsReadOnly="True" Text="{Binding CurrentFile.FileName}" />
                             <Button Content="Browse" Command="{Binding LoadFileCommand}" />
                         </DockPanel>
-                        <StackPanel Orientation="Horizontal" Margin="50, 10, 50, 0">
-                            <Label HorizontalContentAlignment="Right" Width="100" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomProductIDLabel}" />
-                            <TextBox VerticalContentAlignment="Center" Width="250" Text="{Binding CurrentFile.ProductID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="50, 10, 50, 0">
-                            <Label HorizontalContentAlignment="Right" Width="100" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomDrawingNoteLabel}" />
-                            <TextBox VerticalContentAlignment="Center" Width="250" Text="{Binding CurrentFile.DrawingNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="50, 10, 50, 0">
-                            <Label HorizontalContentAlignment="Right" Width="100" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomCustomerNumLabel}" />
-                            <TextBox VerticalContentAlignment="Center" Width="250" Text="{Binding CurrentFile.CustomerNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        </StackPanel>
+                        <DockPanel LastChildFill="True" Margin="10, 10, 10, 0">
+                            <Label HorizontalContentAlignment="Right" Width="125" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomProductIDLabel}" />
+                            <TextBox VerticalContentAlignment="Center" Text="{Binding CurrentFile.ProductID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Margin="10, 10, 10, 0">
+                            <Label HorizontalContentAlignment="Right" Width="125" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomDrawingNoteLabel}" />
+                            <TextBox VerticalContentAlignment="Center"  Text="{Binding CurrentFile.DrawingNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Margin="10, 10, 10, 0">
+                            <Label HorizontalContentAlignment="Right" Width="125" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomCustomerNumLabel}" />
+                            <TextBox VerticalContentAlignment="Center"  Text="{Binding CurrentFile.CustomerNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DockPanel>
                         <StackPanel Orientation="Horizontal" Margin="50, 10, 50, 0" HorizontalAlignment="Center">
                             <Button Content="Save" Command="{Binding SaveFileCommand}" Width="60" />
                         </StackPanel>

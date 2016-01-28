@@ -86,6 +86,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ModelView\BatchGEOModelView.cs" />
+    <Compile Include="Model\FileEx.cs" />
     <Compile Include="Model\CSVEntry.cs" />
     <Compile Include="Model\GEO.cs" />
     <Compile Include="ModelView\GEOModelView.cs" />

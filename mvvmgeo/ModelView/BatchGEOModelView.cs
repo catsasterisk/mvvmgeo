@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace mvvmgeo
 {
@@ -34,7 +35,6 @@ namespace mvvmgeo
                 }
             }
         }
-
         public List<CSVEntry> CSVEntries
         {
             get { return _csvEntries; }
@@ -44,7 +44,6 @@ namespace mvvmgeo
                     _csvEntries = value;
             }
         }
-
         public GEOModelView GMV
         {
             get { return _gmv; }
@@ -57,7 +56,6 @@ namespace mvvmgeo
                 }
             }
         }
-
         public string FolderPath
         {
             get { return _folderPath; }
@@ -70,7 +68,6 @@ namespace mvvmgeo
                 }
             }
         }
-
         public string CSVFileName
         {
             get { return _csvFileName; }
@@ -83,7 +80,6 @@ namespace mvvmgeo
                 }
             }
         }
-
         public string[] CSVFileContents
         {
             get { return _csvFileContents; }
@@ -95,7 +91,6 @@ namespace mvvmgeo
                 }
             }
         }
-
         public string PIDHeader
         {
             get { return Settings.Instance.CustomProductIDLabel; }
@@ -108,7 +103,6 @@ namespace mvvmgeo
         {
             get { return Settings.Instance.CustomCustomerNumLabel; }
         }
-
         public ICommand LoadFolderCommand
         {
             get
@@ -116,12 +110,11 @@ namespace mvvmgeo
                 if(_loadFolderCommand == null)
                 {
                     _loadFolderCommand = new RelayCommand(
-                        param => LoadFolder());
+                        async param => await LoadFolder());
                 }
                 return _loadFolderCommand;
             }
         }
-
         public ICommand LoadCSVCommand
         {
             get
@@ -134,7 +127,6 @@ namespace mvvmgeo
                 return _loadCSVCommand;
             }
         }
-
         public ICommand StartBatchProcessCommand
         {
             get
@@ -147,7 +139,6 @@ namespace mvvmgeo
                 return _startBatchProcessCommand;
             }
         }
-
         public ICommand ClearFileCommand
         {
             get
@@ -163,19 +154,16 @@ namespace mvvmgeo
         #endregion
 
         #region Constructor
-
         public BatchGEOModelView()
         {
             GMV = new GEOModelView();
             GEOFiles = new ObservableCollection<GEO>();
             CSVEntries = new List<CSVEntry>();
         }
-
         #endregion
 
         #region Methods / Helpers / Commands
-
-        private void LoadFolder()
+        private async Task LoadFolder()
         {
             FolderBrowserDialog fb = new FolderBrowserDialog();
             DialogResult result = fb.ShowDialog();
@@ -187,7 +175,7 @@ namespace mvvmgeo
                 FolderPath = fb.SelectedPath;
                 foreach (var f in files)
                 {
-                    GMV.LoadFile(f);
+                    await GMV.LoadFile(f);
                     GEOFiles.Add(GMV.CurrentFile);
                 }
                 AppStatus.Instance.Message("Loaded " + GEOFiles.Count + " files");
@@ -198,7 +186,6 @@ namespace mvvmgeo
 
             }
         }
-
         private void LoadCSV()
         {
             Microsoft.Win32.OpenFileDialog fd = new Microsoft.Win32.OpenFileDialog();
@@ -213,7 +200,6 @@ namespace mvvmgeo
                 AppStatus.Instance.Message("CSV file loaded and processed");
             }
         }
-
         void ProcessCSV()
         {
             if (CSVFileName != null && CSVFileContents.Length > 0)
@@ -232,7 +218,6 @@ namespace mvvmgeo
                 }
             }
         }
-
         private void StartBatchProcess()
         {
             if (CSVFileName != null)
@@ -253,10 +238,9 @@ namespace mvvmgeo
                         }
                     }
                 }
-                AppStatus.Instance.Message("Batch process completed.");
+                AppStatus.Instance.Message("Batch process completed");
             }
         }
-
         private void ClearFile()
         {
             FolderPath = null;

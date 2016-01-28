@@ -62,7 +62,7 @@ namespace mvvmgeo
                 if(_loadOldGEOCommand == null)
                 {
                     _loadOldGEOCommand = new RelayCommand(
-                        param => LoadGEO(true));
+                        async param => await LoadGEO(true));
                 }
                 return _loadOldGEOCommand;
             }
@@ -74,7 +74,7 @@ namespace mvvmgeo
                 if(_loadNewGEOCommand == null)
                 {
                     _loadNewGEOCommand = new RelayCommand(
-                        param => LoadGEO(false));
+                        async param => await LoadGEO(false));
                 }
                 return _loadNewGEOCommand;
             }
@@ -101,9 +101,9 @@ namespace mvvmgeo
         #endregion
 
         #region Methods
-        private void LoadGEO(bool oldFile)
+        private async Task LoadGEO(bool oldFile)
         {
-            GMV.LoadFile();
+            await GMV.LoadFile();
             if(oldFile)
             {
                 OldGEOFile = GMV.CurrentFile;
