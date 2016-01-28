@@ -16,15 +16,15 @@
                             <Button Content="Browse" Command="{Binding LoadFileCommand}" />
                         </DockPanel>
                         <StackPanel Orientation="Horizontal" Margin="50, 10, 50, 0">
-                            <Label HorizontalContentAlignment="Right" Width="100" Content="Product ID" />
+                            <Label HorizontalContentAlignment="Right" Width="100" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomProductIDLabel}" />
                             <TextBox VerticalContentAlignment="Center" Width="250" Text="{Binding CurrentFile.ProductID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="50, 10, 50, 0">
-                            <Label HorizontalContentAlignment="Right" Width="100" Content="Drawing Note" />
+                            <Label HorizontalContentAlignment="Right" Width="100" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomDrawingNoteLabel}" />
                             <TextBox VerticalContentAlignment="Center" Width="250" Text="{Binding CurrentFile.DrawingNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="50, 10, 50, 0">
-                            <Label HorizontalContentAlignment="Right" Width="100" Content="Customer #" />
+                            <Label HorizontalContentAlignment="Right" Width="100" DataContext="{Binding Source={x:Static local:Settings.Instance}}" Content="{Binding CustomCustomerNumLabel}" />
                             <TextBox VerticalContentAlignment="Center" Width="250" Text="{Binding CurrentFile.CustomerNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="50, 10, 50, 0" HorizontalAlignment="Center">
@@ -49,9 +49,9 @@
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="Filename" Width="100" DisplayMemberBinding="{Binding ShortFileName}" />
-                                        <GridViewColumn Header="Product ID" Width="100" DisplayMemberBinding="{Binding ProductID}" />
-                                        <GridViewColumn Header="Drawing Note" Width="100" DisplayMemberBinding="{Binding DrawingNote}" />
-                                        <GridViewColumn Header="Customer #" Width="75" DisplayMemberBinding="{Binding CustomerNum}" />
+                                        <GridViewColumn Header="{Binding PIDHeader}" Width="100" DisplayMemberBinding="{Binding ProductID}" />
+                                        <GridViewColumn Header="{Binding DWNHeader}" Width="100" DisplayMemberBinding="{Binding DrawingNote}" />
+                                        <GridViewColumn Header="{Binding CSTHeader}" Width="75" DisplayMemberBinding="{Binding CustomerNum}" />
                                         <GridViewColumn Header="Done" Width="50" DisplayMemberBinding="{Binding BatchDone}" />
                                     </GridView>
                                 </ListView.View>

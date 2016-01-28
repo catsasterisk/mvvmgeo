@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace mvvmgeo
 {
@@ -31,10 +26,13 @@ namespace mvvmgeo
         #endregion // singleton
 
         #region Private Fields
+
         private string _customProductIDLabel;
         private string _customDrawingNoteLabel;
         private string _customCustomerNumLabel;
+        private bool _saveWithoutPrompt;
         private ICommand _saveSettingsCommand;
+
         #endregion // Private fields
 
         #region Public properties
@@ -73,6 +71,18 @@ namespace mvvmgeo
                 {
                     _customCustomerNumLabel = value;
                     Properties.Settings.Default.CustomCustomerNum = _customCustomerNumLabel;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public bool SaveWithoutPrompt
+        {
+            get { return _saveWithoutPrompt; }
+            set
+            {
+                if(value != _saveWithoutPrompt)
+                {
+                    _saveWithoutPrompt = value;
                     OnPropertyChanged();
                 }
             }

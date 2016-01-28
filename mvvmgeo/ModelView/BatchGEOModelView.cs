@@ -96,6 +96,19 @@ namespace mvvmgeo
             }
         }
 
+        public string PIDHeader
+        {
+            get { return Settings.Instance.CustomProductIDLabel; }
+        }
+        public string DWNHeader
+        {
+            get { return Settings.Instance.CustomDrawingNoteLabel; }
+        }
+        public string CSTHeader
+        {
+            get { return Settings.Instance.CustomCustomerNumLabel; }
+        }
+
         public ICommand LoadFolderCommand
         {
             get
