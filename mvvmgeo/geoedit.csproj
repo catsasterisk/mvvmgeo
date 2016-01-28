@@ -71,14 +71,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BatchGEOModelView.cs" />
-    <Compile Include="CSVEntry.cs" />
-    <Compile Include="GEO.cs" />
-    <Compile Include="GEOModelView.cs" />
+    <Compile Include="ModelView\BatchGEOModelView.cs" />
+    <Compile Include="Model\CSVEntry.cs" />
+    <Compile Include="Model\GEO.cs" />
+    <Compile Include="ModelView\GEOModelView.cs" />
     <Compile Include="Helper\AppStatus.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
-    <Compile Include="ReplaceGEOModelView.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="ModelView\ReplaceGEOModelView.cs" />
+    <Compile Include="Helper\Settings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
