@@ -9,12 +9,33 @@ namespace mvvmgeo
 {
     class Settings : ObservableObject
     {
+        #region Singleton
+        private static Settings _instance;
+        private Settings()
+        {
+            CustomProductIDLabel = Properties.Settings.Default.CustomProductID;
+            CustomDrawingNoteLabel = Properties.Settings.Default.CustomDrawingNote;
+            CustomCustomerNumLabel = Properties.Settings.Default.CustomCustomerNum;
+        }
+        public static Settings Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    _instance = new Settings();
+                }
+                return _instance;
+            }
+        }
+        #endregion // singleton
+
         #region Private Fields
         private string _customProductIDLabel;
         private string _customDrawingNoteLabel;
         private string _customCustomerNumLabel;
         private ICommand _saveSettingsCommand;
-        #endregion
+        #endregion // Private fields
 
         #region Public properties
         public string CustomProductIDLabel
@@ -63,26 +84,19 @@ namespace mvvmgeo
                 if(_saveSettingsCommand == null)
                 {
                     _saveSettingsCommand = new RelayCommand(
-                        param => SaveSettings());
+                        param => Save());
                 }
                 return _saveSettingsCommand;
             }
         }
-        #endregion
+        #endregion // Public properties
 
         #region Methods
-        public Settings()
-        {
-            CustomProductIDLabel = Properties.Settings.Default.CustomProductID;
-            CustomDrawingNoteLabel = Properties.Settings.Default.CustomDrawingNote;
-            CustomCustomerNumLabel = Properties.Settings.Default.CustomCustomerNum;
-        }
-
-        private void SaveSettings()
+        private void Save()
         {
             Properties.Settings.Default.Save();
-            System.Windows.MessageBox.Show("Settings Saved");
+            AppStatus.Instance.Message("Settings saved");
         }
-        #endregion
+        #endregion // Methods
     }
 }
