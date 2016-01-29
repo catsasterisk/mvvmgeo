@@ -67,7 +67,10 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Settings" IsEnabled="True">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DataGrid_Settings" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" ItemsSource="{Binding SettingsList}">
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
         <StatusBar x:Name="StatusBar" Height="30" VerticalAlignment="Bottom" HorizontalContentAlignment="Left">

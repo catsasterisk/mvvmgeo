@@ -93,6 +93,7 @@
     <Compile Include="Utility\AppStatus.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
     <Compile Include="ModelView\ReplaceGEOModelView.cs" />
+    <Compile Include="Utility\Setting.cs" />
     <Compile Include="Utility\Settings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

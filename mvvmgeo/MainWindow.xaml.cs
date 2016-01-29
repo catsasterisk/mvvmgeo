@@ -19,6 +19,8 @@ namespace mvvmgeo
             // set up batch file editor
             BatchGEOModelView bmv = new BatchGEOModelView();
             Grid_Batch.DataContext = bmv;
+
+            DataGrid_Settings.DataContext = Settings.Instance;
         }
     }
 }

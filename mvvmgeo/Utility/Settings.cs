@@ -1,4 +1,6 @@
 ﻿using System.Windows.Input;
+using System.Collections.ObjectModel;
+using mvvmgeo.Utility;
 
 namespace mvvmgeo
 {
@@ -11,6 +13,16 @@ namespace mvvmgeo
             CustomProductIDLabel = Properties.Settings.Default.CustomProductID;
             CustomDrawingNoteLabel = Properties.Settings.Default.CustomDrawingNote;
             CustomCustomerNumLabel = Properties.Settings.Default.CustomCustomerNum;
+            SettingsList = new ObservableCollection<Setting>();
+            SettingsList.Add(new Setting("Skip save dialog", false));
+            SettingsList.Add(new Setting("Check GEO validity", true));
+            SettingsList.Add(new Setting("Debug", false));
+            SettingsList.Add(new Setting("Test", false));
+            SettingsList.Add(new Setting("Test", false));
+            SettingsList.Add(new Setting("Test", false));
+            SettingsList.Add(new Setting("Test", false));
+            SettingsList.Add(new Setting("Test", false));
+            SettingsList.Add(new Setting("Test", false));
         }
         public static Settings Instance
         {
@@ -31,6 +43,7 @@ namespace mvvmgeo
         private string _customDrawingNoteLabel;
         private string _customCustomerNumLabel;
         private bool _saveWithoutPrompt;
+        private ObservableCollection<Setting> _settingsList;
         private ICommand _saveSettingsCommand;
 
         #endregion // Private fields
@@ -83,6 +96,18 @@ namespace mvvmgeo
                 if(value != _saveWithoutPrompt)
                 {
                     _saveWithoutPrompt = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public ObservableCollection<Setting> SettingsList
+        {
+            get { return _settingsList; }
+            set
+            {
+                if(_settingsList != value)
+                {
+                    _settingsList = value;
                     OnPropertyChanged();
                 }
             }
