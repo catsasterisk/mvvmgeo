@@ -163,7 +163,7 @@ namespace mvvmgeo
         #endregion
 
         #region Methods / Helpers / Commands
-        private async Task LoadFolder()
+        private async Task<bool> LoadFolder()
         {
             FolderBrowserDialog fb = new FolderBrowserDialog();
             DialogResult result = fb.ShowDialog();
@@ -179,11 +179,12 @@ namespace mvvmgeo
                     GEOFiles.Add(GMV.CurrentFile);
                 }
                 AppStatus.Instance.Message("Loaded " + GEOFiles.Count + " files");
+                return true;
             }
             else
             {
                 // show error I guess
-
+                return false;
             }
         }
         private void LoadCSV()
